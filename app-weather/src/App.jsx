@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import dataJSON from "../../data.json"
 import getCurrentLocation from "./services/getCurrentLocation"
 import CurrentWeather from "./components/CurrentWeather"
+import TodaysWeather from "./components/TodaysWeather"
 
 function App() {
 
@@ -30,6 +31,8 @@ function App() {
   const dataWeather = dataJSON
 
   const currentWeather = dataWeather.current_weather
+  const dailyWeather = dataWeather.daily
+  const allSchedules = dataWeather.hourly
 
 
   return (
@@ -38,6 +41,7 @@ function App() {
       <div className="flex flex-col gap-7 w-[350px] px-5 py-12 rounded-2xl bg-gradient-to-b from-sky-500 to-indigo-500">
         <InputCity location={location} setLocation={setLocation} />
         <CurrentWeather currentWeather={currentWeather} />
+        <TodaysWeather dailyWeather={dailyWeather} allSchedules={allSchedules} />
       </div>
     </div>
     
