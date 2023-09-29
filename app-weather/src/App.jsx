@@ -8,6 +8,7 @@ import dataJSON from "../../data.json"
 import getCurrentLocation from "./services/getCurrentLocation"
 import CurrentWeather from "./components/CurrentWeather"
 import TodaysWeather from "./components/TodaysWeather"
+import GraphWeather from "./components/GraphWeather"
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
         <InputCity location={location} setLocation={setLocation} />
         <CurrentWeather currentWeather={currentWeather} />
         <TodaysWeather dailyWeather={dailyWeather} allSchedules={allSchedules} />
+        <GraphWeather />
       </div>
     </div>
     
