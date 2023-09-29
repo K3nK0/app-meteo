@@ -11,7 +11,7 @@ export default function CurrentWeather({currentWeather}) {
           <img 
           src={weatherCodeIcons[currentWeather.weathercode]} 
           alt="icon weather"
-          className="w-[70px]" />
+          className="w-[70px] drop-shadow-xl" />
         </div>
         <div>
           <p className="text-3xl">{currentWeather.temperature}°</p>

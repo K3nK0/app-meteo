@@ -2,10 +2,12 @@ import { useState } from "react"
 import { formatDate, formatHours } from "../utils/formatDate"
 import weatherCodeIcons from "../utils/icons"
 import HalfDay from "./HalfDay"
+import BtnPrevious from "./BtnPrevious"
+import BtnNext from "./BtnNext"
 
 export default function TodaysWeather({dailyWeather, allSchedules}) {
 
-  const [indexDay, setIndexDay] = useState(0)
+  const [indexDay, setIndexDay] = useState(1)
 
     const sunriseToday = formatHours(dailyWeather.sunrise[indexDay])
     const sunsetToday = formatHours(dailyWeather.sunset[indexDay])
@@ -45,7 +47,14 @@ export default function TodaysWeather({dailyWeather, allSchedules}) {
           <div className="h-full bg-[#e5e7eb]"></div>
           <HalfDay title={"APRES-MIDI"} weather={afternoonWeather[indexDay]} />
         </div>
-        <div></div>
+      </div>
+      <div className="w-full grid grid-cols-2">
+        <div className="justify-self-start">
+          {indexDay > 0 && <BtnPrevious setIndexDay={setIndexDay} indexDay={indexDay} />}
+        </div>
+        <div className="justify-self-end">
+        {indexDay < dailyWeather.time.length -1 && <BtnNext setIndexDay={setIndexDay} indexDay={indexDay} />}
+        </div>
       </div>
     </div>
   )

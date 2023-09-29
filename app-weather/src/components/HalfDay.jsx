@@ -8,7 +8,7 @@ export default function HalfDay({title, weather}) {
         <p>Humiditée: {weather.humidity}</p>
         <img 
         src={weatherCodeIcons[weather.weathercode]} alt="icon weather"
-        className="w-[50px]"
+        className="w-[50px] drop-shadow-xl"
         />
     </div>
   )
