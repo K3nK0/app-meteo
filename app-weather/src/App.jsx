@@ -8,7 +8,6 @@ import dataJSON from "../../data.json"
 import getCurrentLocation from "./services/getCurrentLocation"
 import CurrentWeather from "./components/CurrentWeather"
 import TodaysWeather from "./components/TodaysWeather"
-import GraphWeather from "./components/GraphWeather"
 
 function App() {
 
@@ -19,7 +18,7 @@ function App() {
     long: ""
   })
 
-  console.log("location", location);
+  // console.log("location", location);
 
   useEffect(() => {
     async function fetchData() {
@@ -35,6 +34,53 @@ function App() {
   const dailyWeather = dataWeather.daily
   const allSchedules = dataWeather.hourly
 
+  const listHoursPerDay = []
+  let hoursPerDay = []
+
+
+  for(let i = 0; i < allSchedules.time.length; i++){
+  
+    if(hoursPerDay[0] === undefined){
+      hoursPerDay.push(
+        {"time":allSchedules.time[i], 
+        "temp":allSchedules.temperature_2m[i], 
+        "humidity":allSchedules.relativehumidity_2m[i], 
+        "weathercode":allSchedules.weathercode[i],
+        "windSpeed": allSchedules.windspeed_10m[i],
+        "windDirection": allSchedules.winddirection_10m[i]
+      }
+      )
+    } 
+    else if(new Date(hoursPerDay[0].time).getDay() === new Date(allSchedules.time[i]).getDay()){
+      hoursPerDay.push(
+        {"time":allSchedules.time[i], 
+        "temp":allSchedules.temperature_2m[i], 
+        "humidity":allSchedules.relativehumidity_2m[i], 
+        "weathercode":allSchedules.weathercode[i],
+        "windSpeed": allSchedules.windspeed_10m[i],
+        "windDirection": allSchedules.winddirection_10m[i]
+      }
+      )
+      if(i + 1 === allSchedules.time.length){
+        listHoursPerDay.push(hoursPerDay)
+        hoursPerDay = []
+      }
+    } else {
+      listHoursPerDay.push(hoursPerDay)
+      hoursPerDay = []
+      hoursPerDay.push(
+        {"time":allSchedules.time[i], 
+        "temp":allSchedules.temperature_2m[i], 
+        "humidity":allSchedules.relativehumidity_2m[i], 
+        "weathercode":allSchedules.weathercode[i],
+        "windSpeed": allSchedules.windspeed_10m[i],
+        "windDirection": allSchedules.winddirection_10m[i]
+      })
+    }
+  }
+
+  console.log("listHoursPerDay",listHoursPerDay);
+
 
   return (
     <>
@@ -43,7 +89,6 @@ function App() {
         <InputCity location={location} setLocation={setLocation} />
         <CurrentWeather currentWeather={currentWeather} />
         <TodaysWeather dailyWeather={dailyWeather} allSchedules={allSchedules} />
-        <GraphWeather />
       </div>
     </div>
     

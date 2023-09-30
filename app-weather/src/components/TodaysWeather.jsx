@@ -20,14 +20,18 @@ export default function TodaysWeather({dailyWeather, allSchedules}) {
         morningWeather.push({
           "temp":allSchedules.temperature_2m[i],
           "humidity":allSchedules.relativehumidity_2m[i],
-          "weathercode":allSchedules.weathercode[i]
+          "weathercode":allSchedules.weathercode[i],
+          "windSpeed": allSchedules.windspeed_10m[i],
+          "windDirection": allSchedules.winddirection_10m[i]
         })
       }
       if(new Date(allSchedules.time[i]).getHours() === 14) {
         afternoonWeather.push({
           "temp":allSchedules.temperature_2m[i],
           "humidity":allSchedules.relativehumidity_2m[i],
-          "weathercode":allSchedules.weathercode[i]
+          "weathercode":allSchedules.weathercode[i],
+          "windSpeed": allSchedules.windspeed_10m[i],
+          "windDirection": allSchedules.winddirection_10m[i]
         })
       }
     }
