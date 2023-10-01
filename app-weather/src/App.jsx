@@ -82,16 +82,12 @@ function App() {
 
   return (
     <>
-    <div className="h-screen grid place-items-center">
-      <div className="flex flex-col gap-7 w-[350px] px-5 py-12 rounded-2xl bg-gradient-to-b from-sky-500 to-indigo-500">
+      <div className="flex flex-col gap-5 min-w-[320px] w-screen max-w-[550px] mx-auto px-5 py-12 bg-gradient-to-b from-sky-500 to-indigo-500">
         <InputCity location={location} setLocation={setLocation} />
         <CurrentWeather currentWeather={currentWeather} />
         <TodaysWeather dailyWeather={dailyWeather} allSchedules={allSchedules} />
         {listHoursPerDay.length >= 1 && <WeatherPerHours listHoursPerDay={listHoursPerDay} /> }
       </div>
-    </div>
-    
-      
     </>
   )
 }

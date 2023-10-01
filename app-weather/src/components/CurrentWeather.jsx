@@ -6,7 +6,7 @@ export default function CurrentWeather({currentWeather}) {
       <div className='border-b-2'>
         <h2 className="text-3xl">Actuellement</h2>
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-around items-center">
         <div>
           <img 
           src={weatherCodeIcons[currentWeather.weathercode]} 
