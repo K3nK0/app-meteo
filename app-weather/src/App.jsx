@@ -8,6 +8,7 @@ import dataJSON from "../../data.json"
 import getCurrentLocation from "./services/getCurrentLocation"
 import CurrentWeather from "./components/CurrentWeather"
 import TodaysWeather from "./components/TodaysWeather"
+import WeatherPerHours from "./components/WeatherPerHours"
 
 function App() {
 
@@ -79,9 +80,6 @@ function App() {
     }
   }
 
-  console.log("listHoursPerDay",listHoursPerDay);
-
-
   return (
     <>
     <div className="h-screen grid place-items-center">
@@ -89,6 +87,7 @@ function App() {
         <InputCity location={location} setLocation={setLocation} />
         <CurrentWeather currentWeather={currentWeather} />
         <TodaysWeather dailyWeather={dailyWeather} allSchedules={allSchedules} />
+        {listHoursPerDay.length >= 1 && <WeatherPerHours listHoursPerDay={listHoursPerDay} /> }
       </div>
     </div>
     

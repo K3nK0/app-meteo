@@ -7,34 +7,34 @@ import BtnNext from "./BtnNext"
 
 export default function TodaysWeather({dailyWeather, allSchedules}) {
 
-  const [indexDay, setIndexDay] = useState(1)
+  const [indexDay, setIndexDay] = useState(0)
 
-    const sunriseToday = formatHours(dailyWeather.sunrise[indexDay])
-    const sunsetToday = formatHours(dailyWeather.sunset[indexDay])
+  const sunriseToday = formatHours(dailyWeather.sunrise[indexDay])
+  const sunsetToday = formatHours(dailyWeather.sunset[indexDay])
 
-    const morningWeather = []
-    const afternoonWeather = []
+  const morningWeather = []
+  const afternoonWeather = []
 
-    for(let i = 0; i < allSchedules.time.length; i++){
-      if(new Date(allSchedules.time[i]).getHours() === 9) {
-        morningWeather.push({
-          "temp":allSchedules.temperature_2m[i],
-          "humidity":allSchedules.relativehumidity_2m[i],
-          "weathercode":allSchedules.weathercode[i],
-          "windSpeed": allSchedules.windspeed_10m[i],
-          "windDirection": allSchedules.winddirection_10m[i]
-        })
-      }
-      if(new Date(allSchedules.time[i]).getHours() === 14) {
-        afternoonWeather.push({
-          "temp":allSchedules.temperature_2m[i],
-          "humidity":allSchedules.relativehumidity_2m[i],
-          "weathercode":allSchedules.weathercode[i],
-          "windSpeed": allSchedules.windspeed_10m[i],
-          "windDirection": allSchedules.winddirection_10m[i]
-        })
-      }
+  for(let i = 0; i < allSchedules.time.length; i++){
+    if(new Date(allSchedules.time[i]).getHours() === 9) {
+      morningWeather.push({
+        "temp":allSchedules.temperature_2m[i],
+        "humidity":allSchedules.relativehumidity_2m[i],
+        "weathercode":allSchedules.weathercode[i],
+        "windSpeed": allSchedules.windspeed_10m[i],
+        "windDirection": allSchedules.winddirection_10m[i]
+      })
     }
+    if(new Date(allSchedules.time[i]).getHours() === 14) {
+      afternoonWeather.push({
+        "temp":allSchedules.temperature_2m[i],
+        "humidity":allSchedules.relativehumidity_2m[i],
+        "weathercode":allSchedules.weathercode[i],
+        "windSpeed": allSchedules.windspeed_10m[i],
+        "windDirection": allSchedules.winddirection_10m[i]
+      })
+    }
+  }
 
   return (
     <div className='w-full flex flex-col gap-3.5 p-2.5 text-white text-center bg-white/10 rounded-lg shadow-xl'>
@@ -52,7 +52,7 @@ export default function TodaysWeather({dailyWeather, allSchedules}) {
           <HalfDay title={"APRES-MIDI"} weather={afternoonWeather[indexDay]} />
         </div>
       </div>
-      <div className="w-full grid grid-cols-2">
+      <div className="w-full grid grid-cols-2 border-t h-12">
         <div className="justify-self-start">
           {indexDay > 0 && <BtnPrevious setIndexDay={setIndexDay} indexDay={indexDay} />}
         </div>
