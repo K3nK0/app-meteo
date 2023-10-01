@@ -7,7 +7,6 @@ export default async function getCurrentLocation() {
         throw new Error("La requête a échoué");
       }
       const data = await response.json();
-      console.log("data city", data);
       const currentLocation = {
         city: data.city,
         lat: data.lat,

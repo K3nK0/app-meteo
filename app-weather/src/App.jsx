@@ -35,7 +35,6 @@ function App() {
 
   const [dataWeather, setDataWeather] = useState(null)
   const [loading, setLoading] = useState(true)
-  console.log("dataWeather", dataWeather);
 
   useEffect(() => {
     if (location.lat && location.long) {
@@ -60,9 +59,6 @@ function App() {
     currentWeather = dataWeather.current_weather
     dailyWeather = dataWeather.daily
     allSchedules = dataWeather.hourly
-
-    
-
 
     for(let i = 0; i < allSchedules.time.length; i++){
     
@@ -112,7 +108,7 @@ function App() {
       <div className="flex flex-col gap-5 min-w-[320px] w-screen max-w-[550px] mx-auto px-5 py-12 bg-gradient-to-b from-sky-500 to-indigo-500">
         <InputCity location={location} setLocation={setLocation} />
         {dataWeather !== null ? (
-          <div>
+          <div className="flex flex-col gap-5">
             <CurrentWeather currentWeather={currentWeather} />
             <TodaysWeather dailyWeather={dailyWeather} allSchedules={allSchedules} />
             {listHoursPerDay.length >= 1 && <WeatherPerHours listHoursPerDay={listHoursPerDay} /> }
